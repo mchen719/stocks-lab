@@ -30,6 +30,26 @@
 
 
 function App() {
+  //getTodos
+  const getStocks = async () => {
+    try {
+      const response = await fetch('/api/stocks');
+      /*
+      look at app-server and see the /api/todos routes
+      go to the routes identify the get request that goes to api/todos
+      review the controllers and see that the controllers
+      respond with an array of todos that are incomplete
+      */
+      const foundStocks = await response.json();
+      // format to a js array or object. We reverse it because on retrieving it, the array will be in the opposite intended order.
+      setStocks(foundStocks); // update state and cause diff algorithm to run
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    getStocks();
+  }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: "App"
   }, /*#__PURE__*/React.createElement(_components_Nav_Nav__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
@@ -125,24 +145,44 @@ function About(props) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Stocks)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
+
 function Stocks(props) {
+  //getTodos
+  const getStocks = async () => {
+    try {
+      const response = await fetch('/api/stocks');
+      /*
+      look at app-server and see the /api/todos routes
+      go to the routes identify the get request that goes to api/todos
+      review the controllers and see that the controllers
+      respond with an array of todos that are incomplete
+      */
+      const foundStocks = await response.json();
+      // format to a js array or object. We reverse it because on retrieving it, the array will be in the opposite intended order.
+      setStocks(foundStocks); // update state and cause diff algorithm to run
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    getStocks();
+  }, []);
+  const stocks = getStocks();
+  console.log(stocks);
   return /*#__PURE__*/React.createElement("div", {
     className: "stocks"
-  }, currencies.map(stock => {
+  }, stocks.map(stock => {
     const {
       name,
-      symbol,
-      lastPrice,
-      change,
-      high,
-      low,
-      open
+      symbol
     } = stock;
-    return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
-      to: "/stock/".concat(symbol)
+    return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+      to: "/stocks/".concat(symbol)
     }, /*#__PURE__*/React.createElement("h2", null, name));
   }));
 }
@@ -177,25 +217,22 @@ function Home(props) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Stocks)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 function Stocks(props) {
   return /*#__PURE__*/React.createElement("div", {
-    className: "stocks"
+    className: "stock"
   }, currencies.map(stock => {
     const {
       name,
-      symbol,
-      lastPrice,
-      change,
-      high,
-      low,
-      open
+      symbol
     } = stock;
-    return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
-      to: "/stock/".concat(symbol)
-    }, /*#__PURE__*/React.createElement("h2", null, name));
+    return /*#__PURE__*/React.createElement("div", {
+      className: "stock"
+    }, /*#__PURE__*/React.createElement("h2", null, "Name: ", props.stock.name), /*#__PURE__*/React.createElement("h2", null, "Price: ", props.stock.price));
   }));
 }
 ;
@@ -608,4 +645,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.c63a64ac726f7538d7504a00f2e81a34.js.map
+//# sourceMappingURL=App.a73007c332a7ee193cc949929cf785d1.js.map

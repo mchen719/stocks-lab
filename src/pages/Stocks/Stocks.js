@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react'
+
 
 export default function Stocks (props) {
   return (
-    <div className="stocks">
+    <div className="stock">
       {currencies.map((stock) => {
-        const { name, symbol, lastPrice, change, high, low, open } = stock;
+        const { name, symbol } = stock;
 
         return (
-          <Link to={`/stock/${symbol}`}>
-            <h2>{name}</h2>
-          </Link>
+          <div className="stock">
+            <h2>Name: {props.stock.name}</h2>
+            <h2>Price: {props.stock.price}</h2>
+          </div>
         );
       })}
     </div>
