@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
+export default function Dashboard (props) {
+    const [stocks, setStocks] = useState([])
 
-
-export default function Stocks (props) {
         //getTodos
         const getStocks = async () => {
             try{
@@ -24,8 +24,6 @@ export default function Stocks (props) {
         useEffect(() => {
             getStocks()
         }, [])
-        const stocks = getStocks()
-        console.log(stocks)
   return (
     <div className="stocks">
       {stocks.map((stock) => {
